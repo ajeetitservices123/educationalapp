@@ -10,7 +10,7 @@
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f6;
-            padding-bottom: 70px; /* Bottom nav ke liye space */
+            padding-bottom: 70px; /* Bottom nav ke liye jagah chhodna zaroori hai */
         }
 
         /* Top Header */
@@ -36,7 +36,7 @@
             width: 250px;
             position: fixed;
             top: 0;
-            left: -250px; /* Initially hidden outside the screen */
+            left: -250px; /* Shuru mein screen ke bahar chhipa rahega */
             background-color: #333;
             color: white;
             transition: 0.3s; /* Smooth sliding effect */
@@ -64,7 +64,7 @@
             text-decoration: none;
         }
 
-        /* Background overlay jab sidebar khule */
+        /* Background overlay (Sidebar khulne par background dark karne ke liye) */
         .overlay {
             display: none;
             position: fixed;
@@ -105,7 +105,7 @@
             margin-bottom: 4px;
         }
 
-        /* Home Screen Content */
+        /* Main Content Styling */
         .main-content {
             padding: 20px;
         }
@@ -125,6 +125,12 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.05);
             font-weight: bold;
             color: #333;
+            cursor: pointer;
+        }
+        .grid-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: 0.2s;
         }
     </style>
 </head>
@@ -137,62 +143,92 @@
 
     <div id="mySidebar" class="sidebar">
         <span class="close-btn" onclick="closeSidebar()">×</span>
-        <a href="#">🏠 Home</a>
-        <a href="#">🔴 Live Classes</a>
-        <a href="#">📝 Tests</a>
-        <a href="#">📄 PDF Notes</a>
-        <a href="#">👤 Profile</a>
-        <a href="#">⚙️ Settings</a>
+        <a href="#" onclick="showScreen('homeScreen'); closeSidebar()">🏠 Home</a>
+        <a href="#" onclick="showScreen('liveScreen'); closeSidebar()">🔴 Live Classes</a>
+        <a href="#" onclick="showScreen('testScreen'); closeSidebar()">📝 Tests</a>
+        <a href="#" onclick="showScreen('pdfScreen'); closeSidebar()">📄 PDF Notes</a>
+        <a href="#" onclick="showScreen('profileScreen'); closeSidebar()">👤 Profile</a>
+        <a href="#" onclick="closeSidebar()">⚙️ Settings</a>
     </div>
 
     <div id="myOverlay" class="overlay" onclick="closeSidebar()"></div>
 
-    <div class="main-content">
+
+    <div id="homeScreen" class="main-content">
         <h2 style="text-align: center; color: #4CAF50;">Welcome!</h2>
         <p style="text-align: center;">Aaj aap kya padhna chahenge?</p>
         
         <div class="grid-container">
-            <div class="grid-card">🔴<br>Live Class</div>
-            <div class="grid-card">📝<br>Tests</div>
-            <div class="grid-card">📄<br>PDF Notes</div>
-            <div class="grid-card">👤<br>Profile</div>
+            <div class="grid-card" onclick="showScreen('liveScreen')">🔴<br>Live Class</div>
+            <div class="grid-card" onclick="showScreen('testScreen')">📝<br>Tests</div>
+            <div class="grid-card" onclick="showScreen('pdfScreen')">📄<br>PDF Notes</div>
+            <div class="grid-card" onclick="showScreen('profileScreen')">👤<br>Profile</div>
         </div>
     </div>
 
+    <div id="liveScreen" class="main-content" style="display: none;">
+        <h2 style="color: #4CAF50;">🔴 Live Classes</h2>
+        <p>Aaj ka live session jaldi shuru hoga. Ready rahein!</p>
+    </div>
+
+    <div id="testScreen" class="main-content" style="display: none;">
+        <h2 style="color: #4CAF50;">📝 Mock Tests</h2>
+        <p>Apni speed aur accuracy check karne ke liye test start karein.</p>
+    </div>
+
+    <div id="pdfScreen" class="main-content" style="display: none;">
+        <h2 style="color: #4CAF50;">📄 PDF Notes</h2>
+        <p>Sabhi subjects ke important notes aur PDFs yahan se padhein.</p>
+    </div>
+
+    <div id="profileScreen" class="main-content" style="display: none;">
+        <h2 style="color: #4CAF50;">👤 My Profile</h2>
+        <p>Aapki details aur app ki setting yahan par dikhegi.</p>
+    </div>
     <div class="bottom-nav">
-        <div class="nav-item">
-            <span class="nav-icon">🏠</span>
-            Home
+        <div class="nav-item" onclick="showScreen('homeScreen')">
+            <span class="nav-icon">🏠</span> Home
         </div>
-        <div class="nav-item">
-            <span class="nav-icon">🔴</span>
-            Live
+        <div class="nav-item" onclick="showScreen('liveScreen')">
+            <span class="nav-icon">🔴</span> Live
         </div>
-        <div class="nav-item">
-            <span class="nav-icon">📝</span>
-            Test
+        <div class="nav-item" onclick="showScreen('testScreen')">
+            <span class="nav-icon">📝</span> Test
         </div>
-        <div class="nav-item">
-            <span class="nav-icon">📄</span>
-            PDFs
+        <div class="nav-item" onclick="showScreen('pdfScreen')">
+            <span class="nav-icon">📄</span> PDFs
         </div>
-        <div class="nav-item">
-            <span class="nav-icon">👤</span>
-            Profile
+        <div class="nav-item" onclick="showScreen('profileScreen')">
+            <span class="nav-icon">👤</span> Profile
         </div>
     </div>
 
     <script>
+        // Sidebar kholne ka logic
         function openSidebar() {
             document.getElementById("mySidebar").style.left = "0";
             document.getElementById("myOverlay").style.display = "block";
         }
 
+        // Sidebar band karne ka logic
         function closeSidebar() {
             document.getElementById("mySidebar").style.left = "-250px";
             document.getElementById("myOverlay").style.display = "none";
         }
+
+        // Alag-alag screen change karne ka logic
+        function showScreen(screenId) {
+            // Step 1: Pehle sabhi screens ko chupa do
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('liveScreen').style.display = 'none';
+            document.getElementById('testScreen').style.display = 'none';
+            document.getElementById('pdfScreen').style.display = 'none';
+            document.getElementById('profileScreen').style.display = 'none';
+            
+            // Step 2: Ab sirf us screen ko dikhao jis par user ne click kiya hai
+            document.getElementById(screenId).style.display = 'block';
+        }
     </script>
 
 </body>
-</html>
+                </html>
