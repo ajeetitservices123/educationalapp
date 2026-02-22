@@ -189,9 +189,33 @@
 
     <div id="testScreen" class="main-content" style="display: none;">
         <h2 style="color: #4CAF50;">📝 Mock Tests</h2>
-        <p>Apni speed aur accuracy check karne ke liye test start karein.</p>
-    </div>
+        <p>Air Force Y Group exam ki practice shuru karein aur apni speed check karein.</p>
 
+        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-top: 5px solid #ff9800;">
+            <h3 style="margin-top: 0; color: #333;">English Grammar: Subject-Verb Concord</h3>
+            <p style="font-size: 16px; font-weight: bold; color: #444;">Q1. "The group of students ______ waiting outside."</p>
+            
+            <form id="quizForm">
+                <label style="display: block; margin-bottom: 10px; padding: 12px; background: #f9f9f9; border-radius: 5px; cursor: pointer; border: 1px solid #ddd;">
+                    <input type="radio" name="q1" value="A"> A) is
+                </label>
+                <label style="display: block; margin-bottom: 10px; padding: 12px; background: #f9f9f9; border-radius: 5px; cursor: pointer; border: 1px solid #ddd;">
+                    <input type="radio" name="q1" value="B"> B) are
+                </label>
+                <label style="display: block; margin-bottom: 10px; padding: 12px; background: #f9f9f9; border-radius: 5px; cursor: pointer; border: 1px solid #ddd;">
+                    <input type="radio" name="q1" value="C"> C) were
+                </label>
+                <label style="display: block; margin-bottom: 10px; padding: 12px; background: #f9f9f9; border-radius: 5px; cursor: pointer; border: 1px solid #ddd;">
+                    <input type="radio" name="q1" value="D"> D) have
+                </label>
+                
+                <button type="button" onclick="checkAnswer()" style="background: #4CAF50; color: white; border: none; padding: 12px 20px; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold;">Submit Answer</button>
+            </form>
+            
+            <p id="resultText" style="margin-top: 15px; font-size: 16px; font-weight: bold; text-align: center;"></p>
+        </div>
+    </div>
+    
     <div id="pdfScreen" class="main-content" style="display: none;">
         <h2 style="color: #4CAF50;">📄 PDF Notes & Study Material</h2>
         <p>Apne syllabus aur notes yahan se padhein aur download karein.</p>
@@ -256,6 +280,32 @@
             
             // Step 2: Ab sirf us screen ko dikhao jis par user ne click kiya hai
             document.getElementById(screenId).style.display = 'block';
+        }
+        // Mock Test ka result check karne ka logic
+        function checkAnswer() {
+            let options = document.getElementsByName('q1');
+            let selectedValue = "";
+            
+            // Check karte hain user ne kaunsa option chuna hai
+            for (let i = 0; i < options.length; i++) {
+                if (options[i].checked) {
+                    selectedValue = options[i].value;
+                }
+            }
+
+            let resultElement = document.getElementById("resultText");
+            
+            // Sahi answer check karna (Is case mein 'A' sahi hai)
+            if (selectedValue === "A") {
+                resultElement.innerText = "✅ Correct! 'The group' ek singular subject hai, isliye 'is' ka use hoga.";
+                resultElement.style.color = "green";
+            } else if (selectedValue === "") {
+                resultElement.innerText = "⚠️ Please pehle ek option select karein!";
+                resultElement.style.color = "orange";
+            } else {
+                resultElement.innerText = "❌ Incorrect. Sahi answer 'A' hai. Try again!";
+                resultElement.style.color = "red";
+            }
         }
     </script>
 
