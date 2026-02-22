@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coaching App Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        /* Login button styling */
+        .login-btn {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px); /* Hover karne par card thoda upar uthega */
+        }
+        .card h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .action-btn {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            width: 100%;
+        }
+        .action-btn:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div>📚 My Coaching App</div>
+    <button class="login-btn">Sign in with Google</button>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3>🔴 Live Classes</h3>
+        <p>Daily interactive sessions join karein.</p>
+        <button class="action-btn">Join Now</button>
+    </div>
+
+    <div class="card">
+        <h3>📄 PDF Notes</h3>
+        <p>Syllabus aur study material download karein.</p>
+        <button class="action-btn">View Notes</button>
+    </div>
+
+    <div class="card">
+        <h3>📝 Mock Tests</h3>
+        <p>Apni performance check karein aur progress save karein.</p>
+        <button class="action-btn">Start Test</button>
+    </div>
+</div>
+
+</body>
+  </html>
